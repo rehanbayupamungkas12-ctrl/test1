@@ -1,0 +1,1235 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CV. SALMAN DESIGN - Jasa Desain Indonesia</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght=300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- SweetAlert2 Library -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #0d121d; color: #f8fafc; overflow-x: hidden; }
+        .gradient-text { background: linear-gradient(90deg, #22d3ee, #2196F3); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .card-dark { background-color: #1a2230; border: 1px solid #2d3748; }
+        
+        /* Animasi Marquee Testimoni Halaman Depan */
+        .marquee-container { display: flex; overflow: hidden; mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent); }
+        .marquee-content { display: flex; gap: 1rem; animation: marquee 25s linear infinite; padding: 1rem 0; }
+        @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+        .testimonial-card { min-width: 280px; background-color: #1a2230; border: 1px solid #2d3748; padding: 1.25rem; border-radius: 1rem; }
+        
+        /* CSS Animasi Running Text Murni untuk Dashboard */
+        .dashboard-marquee-container {
+            display: flex;
+            overflow: hidden;
+            white-space: nowrap;
+            width: 100%;
+        }
+        .dashboard-marquee-text {
+            display: inline-block;
+            padding-left: 100%;
+            animation: dashboardMarquee 20s linear infinite;
+        }
+        @keyframes dashboardMarquee {
+            0% { transform: translate3d(0, 0, 0); }
+            100% { transform: translate3d(-100%, 0, 0); }
+        }
+
+        /* Sembunyikan scrollbar untuk kategori geser */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;  /* IE and Edge */
+            scrollbar-width: none;  /* Firefox */
+        }
+
+        .hidden { display: none; }
+        .form-input { width: 100%; background: #2d3748; border: 1px solid #3d4a60; border-radius: 0.75rem; padding: 0.85rem; color: white; margin-top: 0.25rem; }
+        .btn-cyan { background-color: #22d3ee; color: #0d121d; font-weight: bold; width: 100%; padding: 0.85rem; border-radius: 0.75rem; transition: all 0.3s; }
+        .btn-cyan:hover { background-color: #06b6d4; transform: translateY(-2px); }
+        
+        .hero-circle { width: 100px; height: 100px; background-color: #22d3ee; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; box-shadow: 0 0 30px rgba(34, 211, 238, 0.3); }
+        .hero-circle i { font-size: 50px; color: #0d121d; }
+
+        /* Kustomisasi Ukuran Judul SweetAlert2 agar Lebih Kecil dan Rapi */
+        .swal2-title {
+            font-size: 1.25rem !important;
+            font-weight: 700 !important;
+        }
+        .swal2-popup {
+            font-size: 0.85rem !important;
+            border-radius: 1.25rem !important;
+        }
+
+        /* ANIMASI KUSTOM JAM PASIR PUTAR (HOURGLASS FLIP) */
+        @keyframes hourglass-flip {
+            0%, 75% { transform: rotate(0deg); }
+            85%, 100% { transform: rotate(180deg); }
+        }
+        .animate-hourglass {
+            display: inline-block;
+            animation: hourglass-flip 2.5s infinite ease-in-out;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAV BAR - Responsif di semua perangkat -->
+    <nav id="landing-nav" class="flex items-center justify-between px-6 py-4 bg-[#0d121d] border-b border-slate-800 sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto w-full flex items-center justify-between">
+            <div class="text-lg md:text-xl font-bold gradient-text cursor-pointer" onclick="showPage('landing')">CV. SALMAN DESIGN</div>
+        </div>
+    </nav>
+
+    <!-- PAGE: LANDING -->
+    <div id="page-landing">
+        <!-- Hero Section Optimal di Handphone, Tablet & Desktop -->
+        <header class="pt-16 pb-20 px-4 md:py-28 text-center max-w-7xl mx-auto">
+            <div class="hero-circle transform hover:scale-105 transition-transform duration-300">
+                <i class="fa-solid fa-face-smile"></i>
+            </div>
+            <p class="text-slate-400 text-xs md:text-sm mb-3 tracking-widest uppercase font-semibold">CV. SALMAN DESIGN</p>
+            <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold mb-6 leading-tight w-full max-w-4xl mx-auto px-2">
+                Jasa Design <span class="text-cyan-400">Profesional</span> dan <span class="text-blue-400">Kreatif</span> di Indonesia.
+            </h1>
+            <p class="text-slate-500 text-xs sm:text-sm md:text-base max-w-2xl mx-auto mb-10 leading-relaxed px-4">
+                CV. SALMAN DESIGN hadir sebagai solusi jasa design Indonesia yang menyediakan layanan kreatif, profesional, cepat, dan berkualitas untuk kebutuhan bisnis maupun personal Anda.
+            </p>
+            
+            <!-- Tombol Aksi yang Responsif -->
+            <div class="flex flex-row justify-center gap-4 max-w-xs sm:max-w-sm mx-auto px-2">
+                <button onclick="showPage('login')" class="flex-1 bg-cyan-400 text-slate-900 font-extrabold py-3.5 rounded-full flex items-center justify-center gap-2 text-sm shadow-lg shadow-cyan-500/20 transition-all hover:bg-cyan-300 hover:scale-[1.03]">
+                    <i class="fa-solid fa-right-to-bracket"></i> Masuk
+                </button>
+                <button onclick="showPage('register')" class="flex-1 bg-slate-700 text-white font-extrabold py-3.5 rounded-full flex items-center justify-center gap-2 text-sm transition-all hover:bg-slate-600 hover:scale-[1.03]">
+                    <i class="fa-solid fa-user-plus"></i> Daftar
+                </button>
+            </div>
+        </header>
+
+        <!-- Stats Section -->
+        <section class="px-6 max-w-7xl mx-auto mb-20">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-md md:max-w-none mx-auto">
+                <div class="card-dark rounded-2xl p-8 text-center shadow-lg transition-transform duration-300 hover:-translate-y-1">
+                    <div class="text-3xl font-extrabold text-cyan-400 mb-1 counter" data-target="25000">0</div>
+                    <div class="text-[10px] md:text-xs text-slate-500 font-bold uppercase tracking-widest">Client Puas</div>
+                </div>
+                <div class="card-dark rounded-2xl p-8 text-center shadow-lg transition-transform duration-300 hover:-translate-y-1">
+                    <div class="text-3xl font-extrabold text-cyan-400 mb-1 counter" data-target="50000">0</div>
+                    <div class="text-[10px] md:text-xs text-slate-500 font-bold uppercase tracking-widest">Project Selesai</div>
+                </div>
+                <div class="card-dark rounded-2xl p-8 text-center shadow-lg transition-transform duration-300 hover:-translate-y-1">
+                    <div class="text-3xl font-extrabold text-cyan-400 mb-1 counter" data-target="2500">0</div>
+                    <div class="text-[10px] md:text-xs text-slate-500 font-bold uppercase tracking-widest">Layanan Tersedia</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Fitur Section -->
+        <section class="py-10 px-6 max-w-7xl mx-auto">
+            <div class="text-center mb-12">
+                <h2 class="text-2xl font-bold mb-2">Fitur CV. SALMAN DESIGN</h2>
+                <p class="text-slate-500 text-xs sm:text-sm">Fitur modern yang akan membuat Anda lebih mudah.</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-md md:max-w-none mx-auto">
+                <div class="card-dark p-8 md:p-10 rounded-2xl text-center shadow-lg hover:shadow-cyan-500/5 transition-all">
+                    <h3 class="font-extrabold text-lg mb-3">Design Profesional</h3>
+                    <p class="text-slate-400 text-xs leading-relaxed">Dikerjakan dengan team profesional and hasil dijamin bagus sesuai kebutuhan client.</p>
+                </div>
+                <div class="card-dark p-8 md:p-10 rounded-2xl text-center shadow-lg hover:shadow-cyan-500/5 transition-all">
+                    <h3 class="font-extrabold text-lg mb-3">Fast Response</h3>
+                    <p class="text-slate-400 text-xs leading-relaxed">Kami siap membantu Anda jika Anda mengalami kesulitan atau tidak mengerti terkait layanan yang kami sediakan.</p>
+                </div>
+                <div class="card-dark p-8 md:p-10 rounded-2xl text-center shadow-lg hover:shadow-cyan-500/5 transition-all">
+                    <h3 class="font-extrabold text-lg mb-3">Hasil Berkualitas</h3>
+                    <p class="text-slate-400 text-xs leading-relaxed">Cocok untuk promosi bisnis, sekolah, UMKM, gaming, dan lain-lain.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Cara Order -->
+        <section class="bg-[#22d3ee] py-16 px-6 mt-16">
+            <div class="max-w-7xl mx-auto">
+                <div class="text-center mb-12">
+                    <h2 class="text-2xl font-bold text-white mb-2">Cara Order di CV. SALMAN DESIGN</h2>
+                    <p class="text-white/80 text-xs sm:text-sm italic font-medium">4 Langkah mudah untuk memulai bisnis anda.</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-md md:max-w-none mx-auto">
+                    <div class="bg-white/20 backdrop-blur-md p-6 rounded-2xl border border-white/20 text-white shadow-md">
+                        <h3 class="font-bold mb-1">1. Hubungi Admin</h3>
+                        <p class="text-xs opacity-90">Konsultasikan kebutuhan design Anda dengan admin kami</p>
+                    </div>
+                    <div class="bg-white/20 backdrop-blur-md p-6 rounded-2xl border border-white/20 text-white shadow-md">
+                        <h3 class="font-bold mb-1">2. Kirim Detail Design</h3>
+                        <p class="text-xs opacity-90">Kirim ukuran, konsep, warna, and referensi design.</p>
+                    </div>
+                    <div class="bg-white/20 backdrop-blur-md p-6 rounded-2xl border border-white/20 text-white shadow-md">
+                        <h3 class="font-bold mb-1">3. Proses Design</h3>
+                        <p class="text-xs opacity-90">Team kami mulai mengerjakan design sesuai request Anda.</p>
+                    </div>
+                    <div class="bg-white/20 backdrop-blur-md p-6 rounded-2xl border border-white/20 text-white shadow-md">
+                        <h3 class="font-bold mb-1">4. File Dikirim</h3>
+                        <p class="text-xs opacity-90">Hasil design dikirim dalam kualitas HD siap upload atau cetak.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonials Marquee -->
+        <section class="py-20 px-6 max-w-7xl mx-auto">
+            <div class="text-center mb-10">
+                <h2 class="text-2xl font-bold mb-4 leading-tight">
+                    Client kami <span class="text-cyan-400">Menyukai</span> CV. SALMAN DESIGN, Sekarang Giliran Anda 😍
+                </h2>
+                <p class="text-slate-500 text-xs sm:text-sm leading-relaxed max-w-xs sm:max-w-md mx-auto">
+                    Kami bangga dengan pengembangan Layanan kami, yang secara konsisten diberi ulasan positif.
+                </p>
+            </div>
+            <div class="marquee-container">
+                <div id="marquee-box" class="marquee-content"></div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="py-16 px-6 text-center bg-[#0d121d] border-t border-slate-800">
+            <div class="text-slate-500 text-xs sm:text-sm font-medium">
+                All rights reserved © 2020 <span class="gradient-text font-bold">CV. SALMAN DESIGN</span>
+            </div>
+        </footer>
+    </div>
+
+    <!-- PAGE: LOGIN -->
+    <div id="page-login" class="hidden min-h-screen flex items-center justify-center p-6 bg-[#F8FAFC]">
+        <div class="w-full max-w-md bg-white border border-slate-200 p-8 sm:p-10 rounded-3xl shadow-xl">
+            <div class="mb-6 text-center">
+                <h2 class="text-2xl sm:text-3xl font-bold text-slate-800 mb-2">Sign In</h2>
+                <p class="text-slate-400 text-xs font-semibold">Silakan masuk ke dalam sistem</p>
+            </div>
+            
+            <form onsubmit="handleLogin(event)" class="space-y-4">
+                <!-- Username atau Email Input -->
+                <div class="space-y-1">
+                    <label class="text-slate-500 text-[11px] font-bold uppercase ml-1">Username atau Email</label>
+                    <input type="text" id="login-user" class="w-full px-4 py-3 bg-white border border-slate-300 rounded-xl text-slate-800 placeholder-slate-400 text-sm focus:outline-none focus:ring-2 focus:ring-[#2196F3] focus:border-transparent transition-all" placeholder="Username atau Alamat Email" required>
+                </div>
+                <!-- Password Input dengan Show/Hide Eye Icon -->
+                <div class="relative space-y-1">
+                    <label class="text-slate-500 text-[11px] font-bold uppercase ml-1">Password</label>
+                    <div class="relative">
+                        <input type="password" id="login-pass" class="w-full px-4 py-3 bg-white border border-slate-300 rounded-xl text-slate-800 placeholder-slate-400 text-sm focus:outline-none focus:ring-2 focus:ring-[#2196F3] focus:border-transparent transition-all pr-12" placeholder="Password" required>
+                        <button type="button" onclick="togglePasswordVisibility('login-pass', this)" class="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 focus:outline-none">
+                            <i class="fa-solid fa-eye-slash text-base"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Remember me checkbox -->
+                <div class="flex items-center gap-2.5 pt-1">
+                    <input type="checkbox" id="remember-me" class="w-4 h-4 rounded border-slate-300 accent-[#2196F3] cursor-pointer">
+                    <label for="remember-me" class="text-slate-500 text-xs sm:text-sm font-medium cursor-pointer select-none">Ingat saya</label>
+                </div>
+                
+                <!-- Login Button -->
+                <button type="submit" class="w-full bg-[#2196F3] hover:bg-blue-600 text-white font-extrabold py-3.5 rounded-xl transition-all shadow-md shadow-blue-500/20 text-sm uppercase tracking-wide">MASUK</button>
+            </form>
+            
+            <!-- Link pendaftaran di bagian bawah -->
+            <p id="register-redirect-text" class="text-center text-xs sm:text-sm text-slate-500 mt-6 font-medium">
+                Belum punya akun? <button onclick="showPage('register')" class="text-[#2196F3] hover:underline font-semibold ml-1">Daftar Sekarang</button>
+            </p>
+        </div>
+    </div>
+
+    <!-- PAGE: REGISTER -->
+    <div id="page-register" class="hidden min-h-screen py-10 px-6 flex items-center justify-center bg-[#F8FAFC]">
+        <div class="w-full max-w-md bg-white border border-slate-200 p-8 sm:p-10 rounded-3xl shadow-xl">
+            <div class="mb-8">
+                <h2 class="text-2xl sm:text-3xl font-bold text-[#475569]">Register</h2>
+            </div>
+            
+            <form onsubmit="handleRegister(event)" class="space-y-6">
+                <!-- Name Input -->
+                <div class="space-y-1">
+                    <input type="text" id="reg-name" class="w-full px-4 py-3.5 bg-white border border-slate-300 rounded-xl text-slate-800 placeholder-slate-400 text-sm focus:outline-none focus:ring-2 focus:ring-[#2196F3] focus:border-transparent transition-all" placeholder="Nama Lengkap" required>
+                </div>
+                
+                <!-- Email Input -->
+                <div class="space-y-1.5">
+                    <input type="email" id="reg-email" class="w-full px-4 py-3.5 bg-white border border-slate-300 rounded-xl text-slate-800 placeholder-slate-400 text-sm focus:outline-none focus:ring-2 focus:ring-[#2196F3] focus:border-transparent transition-all" placeholder="Email" required>
+                </div>
+
+                <!-- WA Input -->
+                <div class="space-y-1.5">
+                    <input type="text" id="reg-wa" class="w-full px-4 py-3.5 bg-white border border-slate-300 rounded-xl text-slate-800 placeholder-slate-400 text-sm focus:outline-none focus:ring-2 focus:ring-[#2196F3] focus:border-transparent transition-all" placeholder="Nomor WhatsApp (Contoh: 081234567)" required>
+                </div>
+                
+                <!-- Password Input -->
+                <div class="space-y-1.5 relative">
+                    <input type="password" id="reg-pass" class="w-full px-4 py-3.5 bg-white border border-slate-300 rounded-xl text-slate-800 placeholder-slate-400 text-sm focus:outline-none focus:ring-2 focus:ring-[#2196F3] focus:border-transparent transition-all pr-12" placeholder="Password" required>
+                    <button type="button" onclick="togglePasswordVisibility('reg-pass', this)" class="absolute right-4 top-[24px] -translate-y-1/2 text-slate-400 hover:text-slate-600 focus:outline-none">
+                        <i class="fa-solid fa-eye-slash text-base"></i>
+                    </button>
+                    <p class="text-[11px] text-slate-400 font-medium px-1 leading-normal">Gunakan 8 karakter atau lebih</p>
+                </div>
+                
+                <!-- Confirm Password Input -->
+                <div class="space-y-1.5 relative">
+                    <input type="password" id="reg-confirm-pass" class="w-full px-4 py-3.5 bg-white border border-slate-300 rounded-xl text-slate-800 placeholder-slate-400 text-sm focus:outline-none focus:ring-2 focus:ring-[#2196F3] focus:border-transparent transition-all pr-12" placeholder="Konfirmasi Password" required>
+                    <button type="button" onclick="togglePasswordVisibility('reg-confirm-pass', this)" class="absolute right-4 top-[24px] -translate-y-1/2 text-slate-400 hover:text-slate-600 focus:outline-none">
+                        <i class="fa-solid fa-eye-slash text-base"></i>
+                    </button>
+                    <p class="text-[11px] text-slate-400 font-medium px-1">Pastikan Anda mengetikkan kata sandi yang sama seperti di atas.</p>
+                </div>
+                
+                <!-- Register Button -->
+                <button type="submit" class="w-full bg-[#2196F3] hover:bg-blue-600 text-white font-extrabold py-3.5 rounded-xl transition-all shadow-md shadow-blue-500/20 text-sm uppercase tracking-wide">Register Akun</button>
+            </form>
+            
+            <!-- Link masuk kembali di bagian bawah -->
+            <p class="text-center text-xs sm:text-sm text-slate-500 mt-8 font-medium">
+                Anda sudah punya akun? <button onclick="showPage('login')" class="text-[#2196F3] hover:underline font-semibold ml-1">Log in</button>
+            </p>
+        </div>
+    </div>
+
+    <!-- PAGE: DASHBOARD HOME USER -->
+    <div id="page-home" class="hidden min-h-screen bg-slate-100 text-slate-800 flex flex-col md:flex-row relative">
+        <!-- SIDEBAR DRAWER USER -->
+        <aside id="sidebar" class="fixed inset-y-0 left-0 w-64 bg-white shadow-2xl z-40 transform -translate-x-full transition-transform duration-300 md:translate-x-0 md:static md:h-screen flex flex-col justify-between">
+            <div class="p-6 relative">
+                <!-- TOMBOL SILANG UNTUK MOBILE -->
+                <button onclick="toggleSidebar('sidebar')" class="md:hidden absolute top-5 right-5 text-slate-400 hover:text-slate-800 focus:outline-none transition-colors">
+                    <i class="fa-solid fa-xmark text-xl"></i>
+                </button>
+
+                <!-- Brand Header -->
+                <div class="flex items-center gap-3 mb-8">
+                    <img src="https://files.catbox.moe/d964gp.jpeg" class="w-8 h-8 rounded-lg object-cover" alt="[Logo Brand]">
+                    <span class="font-extrabold text-slate-800 text-sm tracking-wide">CV. SALMAN DESIGN</span>
+                </div>
+
+                <!-- Navigation List -->
+                <nav class="space-y-2">
+                    <button onclick="switchTab('tab-affiliate')" class="tab-btn w-full flex items-center gap-4 px-4 py-3 rounded-xl text-xs font-semibold bg-[#2196F3] text-white transition-all shadow-md shadow-blue-500/20" id="btn-tab-affiliate">
+                        <i class="fa-solid fa-house text-sm"></i> Dashboard
+                    </button>
+                    <button onclick="switchTab('tab-products')" class="tab-btn w-full flex items-center gap-4 px-4 py-3 rounded-xl text-xs font-semibold text-slate-500 hover:bg-slate-50 hover:text-slate-800 transition-all" id="btn-tab-products">
+                        <i class="fa-solid fa-box text-sm"></i> Produk
+                    </button>
+                    <button onclick="switchTab('tab-orders')" class="tab-btn w-full flex items-center gap-4 px-4 py-3 rounded-xl text-xs font-semibold text-slate-500 hover:bg-slate-50 hover:text-slate-800 transition-all" id="btn-tab-orders">
+                        <i class="fa-solid fa-cart-shopping text-sm"></i> Order
+                    </button>
+                    <button onclick="switchTab('tab-affiliate-detail')" class="tab-btn w-full flex items-center gap-4 px-4 py-3 rounded-xl text-xs font-semibold text-slate-500 hover:bg-slate-50 hover:text-slate-800 transition-all" id="btn-tab-affiliate-detail">
+                        <i class="fa-solid fa-users-viewfinder text-sm"></i> Bagikan Link
+                    </button>
+                </nav>
+            </div>
+
+            <!-- Sidebar Footer -->
+            <div class="p-6 border-t border-slate-100">
+                <button onclick="logout()" class="w-full flex items-center gap-4 px-4 py-3 text-red-500 rounded-xl hover:bg-red-50 text-xs font-semibold transition-all">
+                    <i class="fa-solid fa-right-from-bracket"></i> Keluar Akun
+                </button>
+            </div>
+        </aside>
+
+        <!-- MAIN WINDOW USER -->
+        <main class="flex-1 flex flex-col h-screen overflow-y-auto relative">
+            <!-- HEADER BAR USER -->
+            <header class="bg-white border-b border-slate-150 px-6 py-4 flex items-center justify-between sticky top-0 z-30 shadow-sm">
+                <div class="flex items-center gap-4">
+                    <button onclick="toggleSidebar('sidebar')" class="md:hidden text-slate-600 hover:text-slate-800 focus:outline-none">
+                        <i class="fa-solid fa-bars text-lg"></i>
+                    </button>
+                    <span class="text-xs font-medium text-slate-500">Selamat datang, <strong class="text-slate-800" id="dashboard-user">User</strong>!</span>
+                </div>
+                
+                <!-- Avatar Profil Kanan Atas -->
+                <div class="flex items-center gap-3 relative">
+                    <div onclick="toggleProfileDropdown(event)" class="relative w-8 h-8 cursor-pointer select-none shrink-0 aspect-square">
+                        <img src="https://files.catbox.moe/8vd5tj.png" class="w-full h-full rounded-full object-cover aspect-square" alt="Avatar">
+                        <span class="absolute bottom-0 right-0 flex h-2.5 w-2.5">
+                            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75 ring-1 ring-white"></span>
+                            <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-green-500 ring-1 ring-white"></span>
+                        </span>
+                    </div>
+
+                    <!-- DROPDOWN PROFILE USER MENU -->
+                    <div id="profile-dropdown-user" class="hidden absolute right-0 top-11 w-64 bg-white rounded-2xl shadow-xl border border-slate-100 z-50 p-4 transition-all">
+                        <div class="flex items-center gap-3 pb-3 border-b border-slate-100">
+                            <div class="relative w-10 h-10 shrink-0 aspect-square">
+                                <img src="https://files.catbox.moe/8vd5tj.png" class="w-full h-full rounded-full object-cover aspect-square" alt="Avatar Dropdown">
+                                <span class="absolute bottom-0 right-0 block h-2.5 w-2.5 rounded-full bg-green-500 ring-1 ring-white"></span>
+                            </div>
+                            <div class="overflow-hidden">
+                                <h4 id="dropdown-full-name" class="text-xs font-bold text-slate-800 truncate">User</h4>
+                                <p id="dropdown-email" class="text-[10px] text-slate-400 truncate">user@email.com</p>
+                            </div>
+                        </div>
+                        
+                        <div class="pt-3 space-y-1">
+                            <button onclick="openMyProfileModal()" class="w-full flex items-center gap-3 px-3 py-2 text-slate-600 hover:bg-slate-50 rounded-xl text-xs font-semibold transition-all">
+                                <i class="fa-regular fa-user text-slate-400 text-sm"></i> Profil Saya
+                            </button>
+                            <button onclick="logout()" class="w-full flex items-center gap-3 px-3 py-2 text-red-500 hover:bg-red-50 rounded-xl text-xs font-semibold transition-all">
+                                <i class="fa-solid fa-arrow-right-from-bracket text-red-400 text-sm"></i> Log Out
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <!-- TAB CONTENT CONTAINER USER -->
+            <div class="p-6 space-y-6 flex-1">
+
+                <!-- SUB-PAGE: DASHBOARD -->
+                <div id="tab-affiliate" class="tab-panel space-y-6">
+                    <!-- Banner -->
+                    <div class="bg-white rounded-3xl p-6 md:p-8 border border-slate-200 flex flex-col md:flex-row justify-between items-center relative overflow-hidden">
+                        <div class="space-y-4 text-center md:text-left z-10 max-w-md">
+                            <span class="text-sm font-semibold text-slate-700 block">Selamat Datang di Dashboard Kami! 👋</span>
+                            <h3 class="text-slate-400 text-xs font-semibold">Solusi jasa design profesional untuk kebutuhan bisnis, branding, sosial media, dan digital Anda.</h3>
+                            <button onclick="switchTab('tab-products')" class="bg-[#2196F3] hover:bg-blue-600 text-white text-xs font-semibold px-6 py-2.5 rounded-xl transition-all shadow-md shadow-blue-500/10">Order Sekarang</button>
+                        </div>
+                        <div class="mt-6 md:mt-0 z-10 flex justify-center items-center">
+                            <img src="https://files.catbox.moe/l310rw.png" id="character-3d-img" class="w-44 h-44 md:w-52 md:h-52 object-contain rounded-full" alt="Karakter">
+                        </div>
+                    </div>
+
+                    <!-- RUNNING TEXT BERGERAK -->
+                    <div class="bg-white px-5 py-3 rounded-2xl border border-slate-200 flex items-center gap-4 overflow-hidden shadow-sm">
+                        <div class="bg-blue-50 text-[#2196F3] w-10 h-10 rounded-full flex items-center justify-center shrink-0 animate-pulse">
+                            <i class="fa-solid fa-bullhorn text-sm"></i>
+                        </div>
+                        <div class="flex-1 dashboard-marquee-container">
+                            <div class="text-xs font-bold text-slate-600 dashboard-marquee-text" id="user-dashboard-announcement">
+                                Selamat Datang di Website Resmi CV. SALMAN DESIGN — Pusat Jasa Design Indonesia Profesional, Kreatif, dan Terpercaya. Kami siap membantu kebutuhan design digital Anda dengan pelayanan terbaik, proses cepat, dan hasil berkualitas.
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Statistics Dashboard Pengguna -->
+                    <div class="bg-white rounded-3xl p-6 border border-slate-200">
+                        <h4 class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-6">STATISTIK CV. SALMAN DESIGN</h4>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                            <div class="flex items-center gap-4 p-4 rounded-2xl hover:bg-slate-50 transition-all">
+                                <div>
+                                    <h5 class="text-sm font-extrabold text-slate-800">53.291+</h5>
+                                    <span class="text-[10px] font-semibold text-slate-400">Total Pesanan</span>
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-4 p-4 rounded-2xl hover:bg-slate-50 transition-all">
+                                <div>
+                                    <h5 class="text-sm font-extrabold text-slate-800">25.000+</h5>
+                                    <span class="text-[10px] font-semibold text-slate-400">Client Puas</span>
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-4 p-4 rounded-2xl hover:bg-slate-50 transition-all">
+                                <div>
+                                    <h5 class="text-sm font-extrabold text-slate-800">126+</h5>
+                                    <span class="text-[10px] font-semibold text-slate-400">Pesanan Diproses</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Grid Penarikan Row -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="bg-white p-6 rounded-3xl border border-slate-200 flex items-center justify-between">
+                            <div class="space-y-1">
+                                <p class="text-xs font-bold text-slate-400">Pesanan Pending</p>
+                                <h3 class="text-lg font-bold text-slate-800">0</h3>
+                            </div>
+                        </div>
+                        <div class="bg-white p-6 rounded-3xl border border-slate-200 flex items-center justify-between">
+                            <div class="space-y-1">
+                                <p class="text-xs font-bold text-slate-400">Project Selesai</p>
+                                <h3 class="text-lg font-bold text-slate-800">50.000+</h3>
+                            </div>
+                        </div>
+                        <div class="bg-white p-6 rounded-3xl border border-slate-200 flex items-center justify-between">
+                            <div class="space-y-1">
+                                <p class="text-xs font-bold text-slate-400">Total Layanan</p>
+                                <h3 class="text-lg font-bold text-slate-800">2.500+</h3>
+                            </div>
+                        </div>
+                        <div class="bg-white p-6 rounded-3xl border border-slate-200 flex items-center justify-between">
+                            <div class="space-y-1">
+                                <p class="text-xs font-bold text-slate-400">Customer Aktif</p>
+                                <h3 class="text-lg font-bold text-slate-800">25.847+</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SUB-PAGE: PRODUCTS LIST -->
+                <div id="tab-products" class="tab-panel space-y-6 hidden">
+                    <div class="bg-white p-6 rounded-3xl border border-slate-200">
+                        <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6">
+                            <h3 class="text-sm font-bold text-slate-800">Daftar Produk</h3>
+                            
+                            <!-- FITUR PENCARIAN PRODUK -->
+                            <div class="relative w-full sm:w-64">
+                                <span class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none text-slate-400 text-xs">
+                                    <i class="fa-solid fa-magnifying-glass"></i>
+                                </span>
+                                <input type="text" id="product-search-input" oninput="handleSearch()" class="w-full pl-9 pr-4 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs font-semibold text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent" placeholder="Cari produk...">
+                            </div>
+                        </div>
+
+                        <!-- FITUR KATEGORI PRODUK -->
+                        <div id="category-buttons-container" class="flex overflow-x-auto gap-2.5 mb-6 pb-2 no-scrollbar whitespace-nowrap scroll-smooth">
+                            <!-- Diisi Secara Dinamis oleh JavaScript -->
+                        </div>
+
+                        <!-- Products Grid -->
+                        <div id="products-grid-container" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                            <!-- Diisi Secara Dinamis oleh JavaScript -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SUB-PAGE: FORMULIR PEMESANAN / CHECKOUT -->
+                <div id="tab-checkout" class="tab-panel space-y-6 hidden">
+                    <div class="bg-white p-6 md:p-8 rounded-3xl border border-slate-200 max-w-xl mx-auto shadow-sm">
+                        <div class="flex items-center gap-3 mb-6">
+                            <button onclick="switchTab('tab-products')" class="text-slate-500 hover:text-slate-800">
+                                <i class="fa-solid fa-arrow-left text-lg"></i>
+                            </button>
+                            <h3 class="text-sm font-bold text-slate-800">Formulir Pemesanan Produk</h3>
+                        </div>
+
+                        <div class="bg-blue-50 border border-blue-150 rounded-2xl p-4 mb-6">
+                            <p class="text-[10px] font-bold text-[#2196F3] uppercase tracking-widest">Produk yang Dipilih</p>
+                            <h4 id="checkout-product-name" class="text-sm font-extrabold text-slate-800 mt-1">-</h4>
+                            <p id="checkout-product-price" class="text-xs text-[#2196F3] font-semibold mt-0.5">-</p>
+                        </div>
+
+                        <form onsubmit="handleCheckout(event)" class="space-y-4">
+                            <div>
+                                <label class="text-[10px] font-bold text-slate-500 uppercase tracking-wider ml-1">Nama Lengkap <span class="text-red-500">*</span></label>
+                                <input type="text" id="order-fullname" class="form-input text-slate-800 bg-slate-50 border-slate-200" placeholder="Masukkan nama lengkap Anda" required style="color: #1e293b;">
+                            </div>
+                            <div>
+                                <label class="text-[10px] font-bold text-slate-500 uppercase tracking-wider ml-1">Email <span class="text-red-500">*</span></label>
+                                <input type="email" id="order-email" class="form-input text-slate-800 bg-slate-50 border-slate-200" placeholder="Masukkan alamat email Anda" required style="color: #1e293b;">
+                            </div>
+                            <div>
+                                <label class="text-[10px] font-bold text-slate-500 uppercase tracking-wider ml-1">Nomor Handphone (WhatsApp) <span class="text-red-500">*</span></label>
+                                <input type="text" id="order-phone" class="form-input text-slate-800 bg-slate-50 border-slate-200" placeholder="Contoh: 08123456789" required style="color: #1e293b;">
+                            </div>
+                            <div>
+                                <label class="text-[10px] font-bold text-slate-500 uppercase tracking-wider ml-1">Metode Pembayaran <span class="text-red-500">*</span></label>
+                                <select id="order-payment" class="form-input text-slate-800 bg-slate-50 border-slate-200" required style="color: #1e293b;">
+                                    <option value="" disabled selected>Pilih Metode Pembayaran</option>
+                                    <option value="QRIS">QRIS</option>
+                                    <option value="GOPAY">GOPAY</option>
+                                    <option value="DANA">DANA</option>
+                                    <option value="OVO">OVO</option>
+                                </select>
+                            </div>
+                            
+                            <button type="submit" class="w-full bg-emerald-500 hover:bg-emerald-600 text-white font-bold py-3.5 rounded-xl transition-all shadow-lg shadow-emerald-500/15 mt-6 flex items-center justify-center gap-2">
+                                <i class=""></i> Checkout Sekarang
+                            </button>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- SUB-PAGE: ORDERS LIST -->
+                <div id="tab-orders" class="tab-panel space-y-6 hidden">
+                    <div class="bg-white p-6 rounded-3xl border border-slate-200">
+                        <h3 class="text-sm font-bold text-slate-800 mb-6">Riwayat Transaksi</h3>
+                        <div class="overflow-x-auto">
+                            <table class="w-full text-left border-collapse min-w-[600px]">
+                                <thead>
+                                    <tr class="border-b border-slate-200 text-xs font-bold text-slate-400">
+                                        <th class="py-4 px-6">ID Transaksi</th>
+                                        <th class="py-4 px-6">Nama Produk</th>
+                                        <th class="py-4 px-6">Harga</th>
+                                        <th class="py-4 px-6">Status</th>
+                                        <th class="py-4 px-6">Tanggal Pemesanan</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="orders-tbody" class="text-xs font-medium text-slate-700">
+                                    <!-- Diisi secara dinamis -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SUB-PAGE: AFFILIATE DETAILS -->
+                <div id="tab-affiliate-detail" class="tab-panel space-y-6 hidden">
+                    <div class="bg-white p-6 rounded-3xl border border-slate-200">
+                        <h3 class="text-sm font-bold text-slate-800 mb-4">Layanan</h3>
+                        <p id="user-affiliate-share-desc" class="text-xs text-slate-500 leading-relaxed mb-4">Bagikan link website kepada teman dan sosial media Anda agar lebih banyak orang mengetahui layanan design, digital, dan branding profesional kami.</p>
+                        
+                        <div class="bg-slate-50 p-4 rounded-xl border border-slate-150 flex items-center justify-between">
+                            <span id="affiliate-link-text" class="text-[10px] font-bold text-slate-600 overflow-hidden text-ellipsis whitespace-nowrap mr-4">https://www.jasadesignindonesia.my.id/</span>
+                            <button onclick="copyAffiliateLink()" class="bg-[#2196F3] hover:bg-blue-600 text-white font-bold text-xs px-4 py-2 rounded-lg shrink-0 transition-all">Bagikan Link</button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </main>
+    </div>
+
+    <!-- MODAL: DETAILED MY PROFILE INFO -->
+    <div id="modal-my-profile" class="hidden fixed inset-0 bg-black/80 flex items-center justify-center z-[100] p-6 backdrop-blur-sm">
+        <div class="bg-white text-slate-800 p-8 rounded-3xl max-w-sm w-full border border-slate-100 shadow-2xl relative">
+            <button onclick="closeMyProfileModal()" class="absolute top-5 right-5 text-slate-400 hover:text-slate-600">
+                <i class="fa-solid fa-xmark text-lg"></i>
+            </button>
+            <div class="text-center mb-6">
+                <!-- Pengunci ukuran profil bulat modal (Anti-Stretch) -->
+                <div class="relative w-20 h-20 mx-auto mb-3 shrink-0 aspect-square">
+                    <img src="https://files.catbox.moe/8vd5tj.png" class="w-full h-full rounded-full object-cover aspect-square border-4 border-blue-100" alt="Avatar Detail">
+                    <span class="absolute bottom-1 right-1 flex h-4 w-4">
+                        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75 ring-2 ring-white"></span>
+                        <span class="relative inline-flex rounded-full h-4 w-4 bg-green-500 ring-2 ring-white"></span>
+                    </span>
+                </div>
+                <h3 class="font-extrabold text-lg text-slate-800" id="profile-modal-name">User</h3>
+                <span class="inline-block bg-blue-100 text-[#2196F3] text-[10px] font-bold px-3 py-1 rounded-full mt-1">Akun Anda Telah Aktif</span>
+            </div>
+            
+            <div class="space-y-4 border-t border-slate-100 pt-4 text-xs font-semibold text-slate-600">
+                <div>
+                    <span class="text-[10px] font-bold text-slate-400 uppercase">Email</span>
+                    <p class="text-slate-800 mt-0.5" id="profile-modal-email">user@email.com</p>
+                </div>
+                <div>
+                    <span class="text-[10px] font-bold text-slate-400 uppercase">No WhatsApp</span>
+                    <p class="text-slate-800 mt-0.5" id="profile-modal-wa">08123456789</p>
+                </div>
+            </div>
+            <button onclick="closeMyProfileModal()" class="w-full bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold py-3 rounded-xl mt-6 transition-all text-xs">Tutup</button>
+        </div>
+    </div>
+
+    <!-- Modals (Custom Alert) -->
+    <div id="modal-alert" class="hidden fixed inset-0 bg-black/80 flex items-center justify-center z-[100] p-6 backdrop-blur-sm">
+        <div class="bg-slate-800 p-8 rounded-3xl max-w-xs w-full text-center border border-slate-700 shadow-2xl">
+            <i id="modal-icon" class="fa-solid fa-circle-exclamation text-5xl text-yellow-400 mb-6"></i>
+            <p id="modal-text" class="text-slate-200 text-sm mb-8 leading-relaxed font-medium">Pesan peringatan di sini.</p>
+            <button onclick="closeModal()" class="bg-cyan-400 text-slate-900 font-bold py-3 px-10 rounded-full w-full">Tutup</button>
+        </div>
+    </div>
+
+    <script>
+        // --- DATA DEFAULT KATEGORI ---
+        const categories = [
+            { id: 'all', name: 'Semua', comingSoon: false },
+            { id: 'pulsa', name: 'Pulsa', comingSoon: true },
+            { id: 'data', name: 'Paket Data Internet', comingSoon: true },
+            { id: 'game', name: 'Top Up Game', comingSoon: false },
+            { id: 'e-wallet', name: 'Top Up E-wallet', comingSoon: false },
+            { id: 'pln', name: 'Token PLN', comingSoon: false },
+            { id: 'design', name: 'Jasa Design', comingSoon: false },
+            { id: 'premium', name: 'Aplikasi Premium', comingSoon: false },
+            { id: 'jpm', name: 'JPM', comingSoon: true },
+            { id: 'nokos', name: 'Nomor Kosong', comingSoon: false },
+            { id: 'panel', name: 'Panel Bot', comingSoon: false },
+            { id: 'sc-bot', name: 'Script Bot', comingSoon: false },
+            { id: 'sc-website', name: 'Script Website', comingSoon: false },
+            { id: 'exambro', name: 'Exambro (Ujian Anti Contek)', comingSoon: false },
+        ];
+
+        // --- DATA DEFAULT PRODUK ---
+        const productsList = [
+{ id: 1, name: "Light Yagami", category: "design", price: "10000", tag: "New Products" },
+{ id: 2, name: "Mukuro Hoshimiya", category: "design", price: "15000", tag: "New Products" },
+{ id: 3, name: "Hutao Genshin", category: "design", price: "18000", tag: "New Products" },
+{ id: 4, name: "Sakamoto Days", category: "design", price: "20000", tag: "New Products" },
+{ id: 5, name: "Roronoa Zoro", category: "design", price: "25000", tag: "New Products" },
+{ id: 6, name: "Cid Kagenou", category: "design", price: "28000", tag: "New Products" },
+{ id: 7, name: "Seiha Shiunji", category: "design", price: "30000", tag: "New Products" },
+{ id: 8, name: "Devil Jin", category: "design", price: "35000", tag: "New Products" },
+{ id: 9, name: "JB Ultraman", category: "design", price: "38000", tag: "New Products" },
+{ id: 10, name: "RedBoy", category: "design", price: "40000", tag: "New Products" },
+{ id: 11, name: "Eren Yeager", category: "design", price: "8000", tag: "New Products" },
+{ id: 12, name: "Chibi Girl", category: "design", price: "45000", tag: "New Products" },
+{ id: 13, name: "Anime White Boys", category: "design", price: "48000", tag: "New Products" },
+{ id: 14, name: "Raiden Genshin", category: "design", price: "50000", tag: "New Products" },
+{ id: 15, name: "Hoshino Ai", category: "design", price: "55000", tag: "New Products" },
+{ id: 16, name: "Nakano Nino", category: "design", price: "58000", tag: "New Products" },
+{ id: 17, name: "Mahiru Shiina", category: "design", price: "60000", tag: "New Products" },
+{ id: 18, name: "Nakano Yotsuba", category: "design", price: "68000", tag: "New Products" },
+{ id: 19, name: "Furina Genshin", category: "design", price: "65000", tag: "New Products" },
+{ id: 20, name: "Gojo Satoru", category: "design", price: "70000", tag: "New Products" },
+{ id: 21, name: "Shiroko", category: "design", price: "75000", tag: "New Products" },
+{ id: 22, name: "Patelet", category: "design", price: "78000", tag: "New Products" },
+{ id: 23, name: "Rimuru Tempest", category: "design", price: "80000", tag: "New Products" },
+{ id: 24, name: "Light Yagami DN", category: "design", price: "85000", tag: "New Products" },
+{ id: 25, name: "Roshidere", category: "design", price: "88000", tag: "New Products" },
+{ id: 26, name: "Naruto", category: "design", price: "90000", tag: "New Products" },
+{ id: 27, name: "Yatogami Tohka", category: "design", price: "95000", tag: "New Products" },
+{ id: 28, name: "Random Anti Becek", category: "design", price: "98000", tag: "New Products" },
+{ id: 29, name: "Itsuka Shido", category: "design", price: "120000", tag: "New Products" },
+{ id: 30, name: "Anya", category: "design", price: "125000", tag: "New Products" },
+{ id: 31, name: "Takamiya Mio", category: "design", price: "128000", tag: "New Products" },
+{ id: 32, name: "Elaina", category: "design", price: "130000", tag: "New Products" },
+{ id: 33, name: "Nakano Nino Premium", category: "design", price: "135000" },
+{ id: 34, name: "Mahiru Shiina Premium", category: "design", price: "138000" },
+{ id: 35, name: "Enomoto Takane", category: "design", price: "140000" },
+{ id: 36, name: "Nekomata Okayu", category: "design", price: "145000" },
+{ id: 37, name: "Ookami Mio", category: "design", price: "148000" },
+{ id: 38, name: "Hoshino Ai Premium", category: "design", price: "150000" },
+        ];
+
+        // --- DATABASE LOCAL STORAGE ---
+        function getUsers() {
+            return JSON.parse(localStorage.getItem('salman_users') || '[]');
+        }
+
+        function saveUser(user) {
+            const users = getUsers();
+            users.push(user);
+            localStorage.setItem('salman_users', JSON.stringify(users));
+        }
+
+        function getOrders() {
+            return JSON.parse(localStorage.getItem('salman_orders') || '[]');
+        }
+
+        function saveOrder(order) {
+            const orders = getOrders();
+            orders.unshift(order);
+            localStorage.setItem('salman_orders', JSON.stringify(orders));
+        }
+
+        let activeCategory = 'all';
+        let searchQuery = '';
+        let loggedInUser = null;
+
+        // --- RENDER TOMBOL KATEGORI DENGAN DESAIN MENARIK & AKSEN EMAS ---
+        function renderCategoryButtons() {
+            const container = document.getElementById('category-buttons-container');
+            if (!container) return;
+
+            container.innerHTML = categories.map(cat => {
+                const isActive = cat.id === activeCategory;
+                const isComingSoon = cat.comingSoon === true;
+
+                if (isComingSoon) {
+                    return `
+                        <button onclick="handleCategorySelection('${cat.id}')" 
+                                class="flex items-center gap-2 px-4 py-2 text-xs font-bold rounded-full border border-amber-500/30 bg-[#1d1b26]/90 text-amber-400 shadow-md shadow-amber-500/5 hover:bg-[#252232] hover:border-amber-500/50 transition-all shrink-0 whitespace-nowrap">
+                            <i class="fa-solid fa-hourglass-start text-[11px] text-amber-400 animate-hourglass"></i>
+                            <span>${cat.name}</span>
+                            <span class="text-[9px] bg-amber-500/20 text-amber-300 font-extrabold px-1.5 py-0.5 rounded-md uppercase tracking-wider scale-90">Soon</span>
+                        </button>
+                    `;
+                }
+
+                // Desain Kategori Aktif / Normal
+                const activeClass = "bg-[#2196F3] text-white shadow-md shadow-blue-500/25 border-transparent";
+                const inactiveClass = "bg-slate-50 text-slate-600 hover:bg-slate-100 border-slate-200";
+                
+                return `
+                    <button onclick="handleCategorySelection('${cat.id}')" 
+                            class="px-4 py-2 text-xs font-bold rounded-full border transition-all shrink-0 whitespace-nowrap ${isActive ? activeClass : inactiveClass}">
+                        ${cat.name}
+                    </button>
+                `;
+            }).join('');
+        }
+
+        // --- HANDLE SELEKSI KATEGORI (POP-UP SWEETALERT KEMBALI SEDERHANA/SEMULA) ---
+        function handleCategorySelection(catId) {
+            const selectedCat = categories.find(c => c.id === catId);
+            
+            if (selectedCat && selectedCat.comingSoon === true) {
+                Swal.fire({
+                    title: 'COMINGSOON',
+                    text: `Fitur ini sedang dalam tahap pengembangan dan akan segera hadir untuk memberikan pengalaman yang lebih baik.`,
+                    icon: 'info',
+                    confirmButtonColor: '#2196F3',
+                    confirmButtonText: 'Siap, Mengerti'
+                });
+                return;
+            }
+
+            filterByCategory(catId);
+        }
+
+        function filterByCategory(catId) {
+            activeCategory = catId;
+            renderCategoryButtons();
+            applyFilters();
+        }
+
+        function togglePasswordVisibility(fieldId, buttonEl) {
+            const passwordField = document.getElementById(fieldId);
+            const iconEl = buttonEl.querySelector('i');
+            if (passwordField.type === "password") {
+                passwordField.type = "text";
+                iconEl.className = "fa-solid fa-eye text-base";
+            } else {
+                passwordField.type = "password";
+                iconEl.className = "fa-solid fa-eye-slash text-base";
+            }
+        }
+
+        function handleSearch() {
+            const searchInput = document.getElementById('product-search-input');
+            searchQuery = searchInput ? searchInput.value.toLowerCase().trim() : '';
+            applyFilters();
+        }
+
+        function applyFilters() {
+            let filteredProducts = productsList;
+
+            if (activeCategory !== 'all') {
+                filteredProducts = filteredProducts.filter(p => p.category === activeCategory);
+            }
+
+            if (searchQuery) {
+                filteredProducts = filteredProducts.filter(p => p.name.toLowerCase().includes(searchQuery));
+            }
+
+            renderProducts(filteredProducts);
+        }
+
+        function renderProducts(productsToRender) {
+            const container = document.getElementById('products-grid-container');
+            if (!container) return;
+
+            if (productsToRender.length === 0) {
+                container.innerHTML = `
+                    <div class="col-span-full py-12 px-6 text-center bg-slate-50 rounded-2xl border border-dashed border-slate-200 flex flex-col items-center justify-center">
+                        <div class="w-12 h-12 rounded-full bg-slate-100 flex items-center justify-center text-slate-400 mb-3 text-lg">
+                            <i class="fa-solid fa-box-open"></i>
+                        </div>
+                        <p class="text-xs font-bold text-slate-500">Belum ada produk tersedia untuk kategori ini atau pencarian Anda tidak ditemukan.</p>
+                    </div>
+                `;
+                return;
+            }
+
+            container.innerHTML = productsToRender.map(prod => `
+                <div class="bg-white rounded-2xl border border-slate-200 overflow-hidden flex flex-col justify-between hover:shadow-lg transition-all p-5">
+                    <div class="space-y-4 flex-1 flex flex-col justify-between">
+                        <div class="space-y-2">
+                            <h4 class="text-sm font-extrabold text-slate-800 text-center min-h-[40px] flex items-center justify-center">${prod.name}</h4>
+                            <div class="h-px bg-slate-100 w-full my-2"></div>
+                            <span class="block text-xs bg-slate-100 text-slate-500 px-2.5 py-1 rounded-md font-bold text-center">Harga : Rp ${parseInt(prod.price).toLocaleString('id-ID')}</span>
+                        </div>
+                        <button onclick="openOrderForm('${prod.name}', 'Rp ${parseInt(prod.price).toLocaleString('id-ID')}')" class="w-full bg-[#2196F3] text-white font-extrabold text-xs py-2.5 rounded-xl mt-4 transition-colors hover:bg-blue-600">Beli</button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function renderOrdersTable() {
+            const container = document.getElementById('orders-tbody');
+            if (!container) return;
+            
+            const orders = getOrders();
+            const myOrders = orders.filter(o => o.userEmail === (loggedInUser ? loggedInUser.email : ''));
+
+            if (myOrders.length === 0) {
+                container.innerHTML = `<tr><td colspan="5" class="py-10 px-6 text-center text-slate-400 font-bold text-xs">Belum ada riwayat pemesanan.</td></tr>`;
+                return;
+            }
+
+            container.innerHTML = myOrders.map(order => {
+                let statusBadge = `<span class="bg-amber-100 text-amber-700 px-2 py-1 rounded-full text-[10px] font-bold">Pending</span>`;
+                if (order.status === 'Selesai') {
+                    statusBadge = `<span class="bg-green-100 text-green-700 px-2 py-1 rounded-full text-[10px] font-bold">Selesai</span>`;
+                }
+
+                return `
+                    <tr class="border-b border-slate-100 hover:bg-slate-50/80 transition-colors">
+                        <td class="py-5 px-6 font-bold text-[#2196F3]">${order.id}</td>
+                        <td class="py-5 px-6 font-semibold text-slate-800">${order.productName}</td>
+                        <td class="py-5 px-6 text-slate-600">${order.price}</td>
+                        <td class="py-5 px-6">${statusBadge}</td>
+                        <td class="py-5 px-6 text-slate-500 font-normal">${order.date}</td>
+                    </tr>
+                `;
+            }).join('');
+        }
+
+        // --- SISTEM BAGIKAN LINK DENGAN ALERTS BARU ---
+        function copyAffiliateLink() {
+            const linkText = document.getElementById('affiliate-link-text').innerText;
+            const tempInput = document.createElement('input');
+            tempInput.value = linkText;
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            tempInput.setSelectionRange(0, 99999);
+            
+            try {
+                document.execCommand('copy');
+                // Menggunakan format kustom SweetAlert2 baru sesuai instruksi Anda
+                Swal.fire({
+                    title: "Link Berhasil Disalin",
+                    text: "Tautan telah berhasil disalin ke clipboard.",
+                    icon: "success"
+                });
+            } catch (err) {
+                showAlert('Gagal menyalin link.', 'warning');
+            }
+            document.body.removeChild(tempInput);
+        }
+
+        function toggleProfileDropdown(event) {
+            event.stopPropagation();
+            const dropdown = document.getElementById('profile-dropdown-user');
+            dropdown.classList.toggle('hidden');
+        }
+
+        window.addEventListener('click', function() {
+            const du = document.getElementById('profile-dropdown-user');
+            if (du && !du.classList.contains('hidden')) du.classList.add('hidden');
+        });
+
+        function openMyProfileModal() {
+            if (!loggedInUser) return;
+            document.getElementById('profile-modal-name').innerText = loggedInUser.name;
+            document.getElementById('profile-modal-email').innerText = loggedInUser.email;
+            document.getElementById('profile-modal-wa').innerText = loggedInUser.wa || "-";
+            document.getElementById('modal-my-profile').classList.remove('hidden');
+        }
+
+        function closeMyProfileModal() {
+            document.getElementById('modal-my-profile').classList.add('hidden');
+        }
+
+        // --- SISTEM NAVIGASI MULTI-PAGE ---
+        function showPage(pageId) {
+            ['landing', 'login', 'register', 'home'].forEach(p => {
+                const el = document.getElementById('page-' + p);
+                if (el) el.classList.add('hidden');
+            });
+            document.getElementById('page-' + pageId).classList.remove('hidden');
+            
+            // Toggle landing navbar
+            document.getElementById('landing-nav').classList.toggle('hidden', pageId === 'home');
+            
+            window.scrollTo(0,0);
+            if(pageId === 'landing') animateCounters();
+        }
+
+        function toggleSidebar(sidebarId = 'sidebar') {
+            const sidebar = document.getElementById(sidebarId);
+            if (sidebar.classList.contains('-translate-x-full')) {
+                sidebar.classList.remove('-translate-x-full');
+            } else {
+                sidebar.classList.add('-translate-x-full');
+            }
+        }
+
+        function switchTab(tabId) {
+            document.querySelectorAll('.tab-panel').forEach(panel => {
+                panel.classList.add('hidden');
+            });
+            document.getElementById(tabId).classList.remove('hidden');
+
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.className = "tab-btn w-full flex items-center gap-4 px-4 py-3 rounded-xl text-xs font-semibold text-slate-500 hover:bg-slate-50 hover:text-slate-800 transition-all";
+            });
+
+            const activeBtn = document.getElementById('btn-' + tabId);
+            if (activeBtn) {
+                let mapId = tabId;
+                if (tabId === 'tab-checkout') mapId = 'tab-products';
+                const btnRef = document.getElementById('btn-' + mapId);
+                if (btnRef) {
+                    btnRef.className = "tab-btn w-full flex items-center gap-4 px-4 py-3 rounded-xl text-xs font-semibold bg-[#2196F3] text-white transition-all shadow-md shadow-blue-500/20";
+                }
+            }
+
+            if (window.innerWidth < 768) {
+                const sb = document.getElementById('sidebar');
+                if(sb) sb.classList.add('-translate-x-full');
+            }
+        }
+
+        function openOrderForm(prodName, price) {
+            document.getElementById('checkout-product-name').innerText = prodName;
+            document.getElementById('checkout-product-price').innerText = price;
+            
+            document.getElementById('order-fullname').value = loggedInUser ? loggedInUser.name : '';
+            document.getElementById('order-email').value = loggedInUser ? loggedInUser.email : '';
+            document.getElementById('order-phone').value = loggedInUser ? (loggedInUser.wa || '') : '';
+            document.getElementById('order-payment').value = '';
+            
+            switchTab('tab-checkout');
+        }
+
+        function handleCheckout(e) {
+            e.preventDefault();
+            const prodName = document.getElementById('checkout-product-name').innerText;
+            const fullname = document.getElementById('order-fullname').value;
+            const email = document.getElementById('order-email').value;
+            const phone = document.getElementById('order-phone').value;
+            const payment = document.getElementById('order-payment').value;
+            const actualPrice = document.getElementById('checkout-product-price').innerText;
+
+            if (!fullname || !email || !phone || !payment) {
+                showAlert('Harap isi semua kolom formulir pemesanan terlebih dahulu!', 'warning');
+                return;
+            }
+
+            const orderId = '#ORD-' + Math.floor(10000 + Math.random() * 90000);
+            const today = new Date();
+            const formattedDate = String(today.getDate()).padStart(2, '0') + '/' + 
+                                  String(today.getMonth() + 1).padStart(2, '0') + '/' + 
+                                  today.getFullYear();
+
+            const newOrder = {
+                id: orderId,
+                productName: prodName,
+                price: actualPrice,
+                date: formattedDate,
+                userEmail: email,
+                userName: fullname,
+                userPhone: phone,
+                paymentMethod: payment,
+                status: 'Pending'
+            };
+
+            saveOrder(newOrder);
+            renderOrdersTable();
+
+            const adminWhatsApp = "6289513480484"; 
+            const message = `Halo Admin,\n\nSaya ingin memesan produk digital berikut:\n\n` +
+                            `📦 *ID Order:* ${orderId}\n` +
+                            `📦 *Produk:* ${prodName}\n` +
+                            `💰 *Harga:* ${actualPrice}\n\n` +
+                            `*Detail Pelanggan:*\n` +
+                            `👤 *Nama Lengkap:* ${fullname}\n` +
+                            `📧 *Email:* ${email}\n` +
+                            `📞 *No. WhatsApp:* ${phone}\n` +
+                            `💳 *Metode Pembayaran:* ${payment}\n` +
+                            `📅 *Tanggal:* ${formattedDate}\n\n` +
+                            `Mohon dibantu proses pesanannya ya. Terima kasih!`;
+
+            const encodedMessage = encodeURIComponent(message);
+            const waUrl = `https://api.whatsapp.com/send?phone=${adminWhatsApp}&text=${encodedMessage}`;
+
+            window.open(waUrl, '_blank');
+        }
+
+        function updateUserDashboardStats() {
+            const orders = getOrders();
+            const myOrders = orders.filter(o => o.userEmail === (loggedInUser ? loggedInUser.email : ''));
+
+            const pending = myOrders.filter(o => o.status === 'Pending' || !o.status).length;
+            const done = myOrders.filter(o => o.status === 'Selesai').length;
+
+            const productStat = document.getElementById('user-stats-total-products');
+            const pendingStat = document.getElementById('user-stats-pending-orders');
+            const doneStat = document.getElementById('user-stats-done-orders');
+
+            if (productStat) productStat.innerText = productsList.length;
+            if (pendingStat) pendingStat.innerText = pending;
+            if (doneStat) doneStat.innerText = done;
+        }
+
+        // --- REGISTER HANDLER ---
+        function handleRegister(e) {
+            e.preventDefault();
+            const email = document.getElementById('reg-email').value.trim();
+            const name = document.getElementById('reg-name').value.trim();
+            const wa = document.getElementById('reg-wa').value.trim();
+            const password = document.getElementById('reg-pass').value;
+            const confirmPassword = document.getElementById('reg-confirm-pass').value;
+
+            if (password !== confirmPassword) {
+                Swal.fire({
+                    icon: "error",
+                    title: "Kata Sandi Tidak Cocok",
+                    text: "Pastikan konfirmasi sandi sama dengan kata sandi baru Anda."
+                });
+                return;
+            }
+
+            const username = email.split('@')[0];
+            const users = getUsers();
+            
+            if (users.some(u => u.username === username || u.email === email)) {
+                Swal.fire({
+                    icon: "error",
+                    title: "Pendaftaran Gagal",
+                    text: "Email atau username sudah terdaftar. Silakan gunakan data yang berbeda."
+                });
+                return;
+            }
+
+            const newUser = { email, wa, name, username, password };
+            saveUser(newUser);
+
+            loggedInUser = newUser;
+
+            document.getElementById('dashboard-user').innerText = name;
+            document.getElementById('dropdown-full-name').innerText = name;
+            document.getElementById('dropdown-email').innerText = email;
+            document.getElementById('affiliate-link-text').innerText = `https://www.jasadesignindonesia.my.id`;
+
+            Swal.fire({
+                title: "Pendaftaran Berhasil",
+                text: "Akun Anda terdaftar dan masuk secara otomatis!",
+                icon: "success"
+            }).then(() => {
+                renderOrdersTable();
+                showPage('home');
+                switchTab('tab-affiliate');
+            });
+        }
+
+        // --- LOGIN HANDLER ---
+        function handleLogin(e) {
+            e.preventDefault();
+            const userInput = document.getElementById('login-user').value.trim();
+            const passwordIn = document.getElementById('login-pass').value;
+
+            const users = getUsers();
+            const foundUser = users.find(u => 
+                (u.username === userInput || u.email === userInput) && 
+                u.password === passwordIn
+            );
+
+            if (foundUser) {
+                loggedInUser = foundUser;
+
+                document.getElementById('dashboard-user').innerText = foundUser.name;
+                document.getElementById('dropdown-full-name').innerText = foundUser.name;
+                document.getElementById('dropdown-email').innerText = foundUser.email;
+                document.getElementById('affiliate-link-text').innerText = `https://www.jasadesignindonesia.my.id`;
+
+                Swal.fire({
+                    title: "Pendaftaran Akun Berhasil",
+                    text: `Selamat! Akun Anda telah berhasil dibuat dan siap digunakan. Terima kasih telah bergabung dengan kami.`,
+                    icon: "success",
+                    timer: 1500,
+                    showConfirmButton: false
+                }).then(() => {
+                    renderOrdersTable();
+                    showPage('home');
+                    switchTab('tab-affiliate');
+                });
+            } else {
+                Swal.fire({
+                    icon: "error",
+                    title: "Akun Tidak Ditemukan",
+                    text: "Maaf, akun yang Anda cari tidak ditemukan. Silakan periksa kembali email atau username yang Anda masukkan.",
+                    footer: '<a href="#" onclick="Swal.close(); showPage(\'register\'); return false;" class="text-[#2196F3] hover:text-blue-400 font-bold transition-all">Belum punya akun? Daftar sekarang!</a>'
+                });
+            }
+        }
+
+        function logout() {
+            Swal.fire({
+                title: "Konfirmasi Keluar Akun",
+                text: "Apakah Anda yakin ingin keluar dari akun ini? Anda perlu masuk kembali untuk mengakses layanan dan fitur akun.",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#2196F3",
+                cancelButtonColor: "#ef4444",
+                confirmButtonText: "Keluar Akun",
+                cancelButtonText: "Batal"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    loggedInUser = null;
+                    Swal.fire({
+                        title: "Berhasil Keluar!",
+                        text: "Sesi akun Anda telah berhasil diakhiri. Untuk mengakses layanan kembali, silakan masuk menggunakan akun Anda.",
+                        icon: "success",
+                        showConfirmButton: false,
+                        timer: 1500
+                    }).then(() => {
+                        showPage('landing');
+                    });
+                }
+            });
+        }
+
+        // Animasi counter
+        function animateCounters() {
+            const counters = document.querySelectorAll('.counter');
+            counters.forEach(c => {
+                const target = +c.getAttribute('data-target');
+                let count = 0;
+                const update = () => {
+                    const inc = target / 40;
+                    if(count < target) {
+                        count += inc;
+                        c.innerText = Math.floor(count).toLocaleString('id-ID');
+                        setTimeout(update, 20);
+                    } else {
+                        c.innerText = target.toLocaleString('id-ID');
+                    }
+                };
+                update();
+            });
+        }
+
+        const testimonials = [
+{ name: "Budi Santoso", text: "Hasil desain sangat profesional dan sesuai dengan konsep yang saya inginkan. Proses pengerjaannya juga cepat dan komunikatif." },
+{ name: "Siti Nurhaliza", text: "Pelayanan sangat ramah dan responsif. Desain yang dibuat benar-benar meningkatkan citra bisnis saya." },
+{ name: "Dewi Lestari", text: "Sangat puas dengan hasil desain logo yang diberikan. Kreatif, modern, dan mudah diingat." },
+{ name: "Fajar Nugroho", text: "Tim CV. SALMAN DESIGN sangat profesional. Semua revisi dikerjakan dengan cepat dan hasil akhirnya luar biasa." },
+{ name: "Ahmad Rizki", text: "Website bisnis saya terlihat jauh lebih modern setelah dikerjakan oleh tim ini. Recommended banget." },
+{ name: "Maya Putri", text: "Desain poster yang dibuat sangat menarik dan berhasil meningkatkan promosi usaha saya." },
+{ name: "Doni Saputra", text: "Pengerjaan cepat, harga terjangkau, dan kualitas desain sangat memuaskan." },
+{ name: "Lina Marlina", text: "Hasil desain sesuai ekspektasi bahkan melebihi harapan saya. Terima kasih CV. SALMAN DESIGN." },
+{ name: "Agus Setiawan", text: "Pelayanan terbaik yang pernah saya dapatkan dari jasa desain. Sangat profesional." },
+{ name: "Nina Kartika", text: "Desain banner yang dibuat sangat menarik perhatian pelanggan. Hasilnya keren." },
+        ];
+
+        function initTestimonials() {
+            const box = document.getElementById('marquee-box');
+            if (box) {
+                const html = testimonials.map(t => `
+                    <div class="testimonial-card">
+                        <p class="text-slate-400 text-[10px] mb-4 italic">"${t.text}"</p>
+                        <span class="text-[10px] font-bold text-slate-300">${t.name}</span>
+                    </div>
+                `).join('');
+                box.innerHTML = html + html;
+            }
+        }
+
+        // Custom alert fallback
+        let modalCloseCallback = null;
+        function showAlert(text, type = 'warning', onCloseCallback = null) {
+            const modal = document.getElementById('modal-alert');
+            const icon = document.getElementById('modal-icon');
+            const textEl = document.getElementById('modal-text');
+            
+            textEl.innerText = text;
+            icon.className = type === 'warning' ? 'fa-solid fa-circle-exclamation text-5xl text-yellow-400 mb-6' : 'fa-solid fa-circle-check text-5xl text-green-400 mb-6';
+            modal.classList.remove('hidden');
+            
+            modalCloseCallback = onCloseCallback;
+        }
+
+        function closeModal() {
+            document.getElementById('modal-alert').classList.add('hidden');
+            if (modalCloseCallback) {
+                modalCloseCallback();
+                modalCloseCallback = null;
+            }
+        }
+
+        // Window onload
+        window.onload = () => {
+            renderCategoryButtons();
+            renderProducts(productsList);
+            initTestimonials();
+            animateCounters();
+        };
+    </script>
+</body>
+</html>
